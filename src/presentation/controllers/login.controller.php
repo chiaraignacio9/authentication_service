@@ -2,9 +2,9 @@
 
 namespace App\presentation\controllers;
 
+use App\domain\use_cases\LoginUseCase;
 use App\infrastructure\datasources\MysqlDatasourceImpl;
 use App\infrastructure\repositories\UserRepositoryImpl;
-use App\infrastructure\services\LoginService;
 use App\libs\Request;
 use App\presentation\requests\UserLoginRequest;
 use App\presentation\requests\UserLoginRequestOptions;
@@ -27,7 +27,7 @@ class LoginController extends Request {
             ]);
         }
         
-        $loginService = new LoginService(new UserRepositoryImpl(new MysqlDatasourceImpl()));
+        $loginService = new LoginUseCase(new UserRepositoryImpl(new MysqlDatasourceImpl()));
         
         if( !$token = $loginService->login(
                 username:$requestData->username, 

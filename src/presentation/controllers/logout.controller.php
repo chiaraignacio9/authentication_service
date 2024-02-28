@@ -2,11 +2,14 @@
 
 namespace App\presentation\controllers;
 
+use App\domain\use_cases\LogoutUseCase;
+
 class LogoutController {
 
     public function index(){
-        setcookie('token', '', time()-3600, '/');
-        unset($_COOKIE['token']);
+        $logoutUseCase = new LogoutUseCase();
+
+        $logoutUseCase->logout();
     }
 
 }

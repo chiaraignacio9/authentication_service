@@ -17,6 +17,7 @@ class UserRepositoryImpl extends UserRepository {
     function save(UserEntity $user): bool {
         
         try{            
+            $this->datasource->save( $user );
             return true;
         }catch(Exception $e) {
             return false;

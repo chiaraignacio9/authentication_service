@@ -10,7 +10,7 @@ class Validation
     public $errors = [];
 
     public function validate($data)
-    {
+    {        
 
         foreach ($this->fields as $field => $validations) {
 
@@ -22,6 +22,11 @@ class Validation
                     if (str_contains($validation, ':')) {
                         $function = explode(':', $validation);
                         $this->{$function[0]}($function[1], $data->{$field}, $field);
+                        continue;
+                    }
+
+                    if( $validation == 'repassword' ){
+                        $this->repassword($data->password, $data->repassword, $field);
                         continue;
                     }
 
@@ -41,6 +46,14 @@ class Validation
         }
 
         return false;
+
+    }    
+
+    private function repassword($password, $repassword, $field){
+
+        if ($password !== $repassword) {
+            $this->errors[$field][] = "Password do not match";
+        }
 
     }
 
