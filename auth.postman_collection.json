@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\" : \"chiaraignacio9\",\r\n    \"password\": \"Vasousado1.\"\r\n}",
+					"raw": "{\r\n    \"username\" : \"\",\r\n    \"password\": \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -69,7 +69,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"chiaraignacio9\",\r\n    \"password\": \"Vasousado1.\",\r\n    \"confirmPassword\": \"Vasousado1.\"\r\n}",
+					"raw": "{\r\n    \"username\": \"\",\r\n    \"password\": \"\",\r\n    \"confirmPassword\": \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
