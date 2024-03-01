@@ -10,11 +10,15 @@ use Exception;
 class MysqlDatasourceImpl extends UserDatasource {
     
     function save(UserEntity $user): bool {
-        
-        try{
+
+        try {
             $database = new Mysql();
             $connection = $database->connect();
-
+        }catch(Exception $e){
+            throw new Exception($e->getMessage());
+        }
+        
+        try{            
             $statement = $connection->prepare('INSERT INTO users (
                 username, password
             ) VALUES (
@@ -27,7 +31,7 @@ class MysqlDatasourceImpl extends UserDatasource {
 
             return true;
         }catch(Exception $e) {
-            return false;
+            
         }
 
     }
@@ -35,9 +39,14 @@ class MysqlDatasourceImpl extends UserDatasource {
     
     function findByUsername(string $username): UserEntity|bool {        
 
-        try{
+        try {
             $database = new Mysql();
             $connection = $database->connect();
+        }catch(Exception $e){
+            throw new Exception($e->getMessage());
+        }    
+
+        try{            
 
             $statement = $connection->prepare('SELECT * FROM users WHERE username = :username');
             $statement->bindParam(':username', $username);
@@ -58,6 +67,6 @@ class MysqlDatasourceImpl extends UserDatasource {
             return false;
         }
 
-    }
+    }    
 
 }

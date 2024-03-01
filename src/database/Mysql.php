@@ -5,7 +5,7 @@ namespace App\database;
 use Exception;
 use PDO;
 use PDOException;
-require_once dirname(__DIR__) . '\config\envs.plugin.php';
+require_once dirname(__DIR__) . '/config/envs.plugin.php';
 
 class Mysql
 {    
@@ -23,7 +23,8 @@ class Mysql
     }
 
     public function connect(): ?PDO
-    {
+    {                
+
         $dsn = "mysql:host={$this->host};dbname={$this->database}";                
 
         try {

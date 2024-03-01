@@ -37,7 +37,7 @@ class UserRepositoryImpl extends UserRepository {
             return false;
         }catch(Exception $e) {
 
-            return false;
+            throw new Exception($e->getMessage());
 
         }
 

@@ -8,6 +8,7 @@ use App\infrastructure\repositories\UserRepositoryImpl;
 use App\libs\Request;
 use App\presentation\requests\UserLoginRequest;
 use App\presentation\requests\UserLoginRequestOptions;
+use Exception;
 
 class LoginController extends Request {
 
@@ -26,20 +27,31 @@ class LoginController extends Request {
                 'errors' => $loginRequest->errors
             ]);
         }
-        
-        $loginService = new LoginUseCase(new UserRepositoryImpl(new MysqlDatasourceImpl()));
-        
-        if( !$token = $loginService->login(
-                username:$requestData->username, 
-                password:$requestData->password
-            ) ){
-            $this->response([                
-                'oldValues' => $requestData,
-                'message' => 'The credentials do not match any user '
-            ]);
-        }            
 
-    }
+        $loginUseCase = new LoginUseCase(new UserRepositoryImpl(new MysqlDatasourceImpl()));
+        
+        
+        try{
+
+            $token = $loginUseCase->login(
+                    username:$requestData->username, 
+                    password:$requestData->password
+            );                        
+
+            if(!$token){
+                $this->response([
+                    'oldValues' => $requestData,
+                    'message' => 'The credentials do not match any user '
+                ]);
+            }            
+
+        }catch(Exception $e){
+            $this->response([
+                'message' => $e->getMessage()
+            ]);
+        }
+
+    }    
 
     private function response( ...$args ){
         

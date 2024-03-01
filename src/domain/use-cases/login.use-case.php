@@ -16,9 +16,17 @@ class LoginUseCase {
 
     public function login(string $username, string $password): bool {        
         
-        if( !$user = $this->userRepository->findByUsername( $username ) ){
-            return false;
-        }                    
+        try{
+
+            $user = $this->userRepository->findByUsername( $username );
+
+            if( !$user ){
+                return false;
+            }
+
+        }catch( Exception $e ){
+            throw new Exception($e->getMessage());
+        }
 
         if ( !password_verify($password, $user->password) ){
             return false;

@@ -2,7 +2,7 @@
 
 namespace App\config;
 
-require_once dirname(__DIR__) . '\config\envs.plugin.php';
+require_once dirname(__DIR__) . '/config/envs.plugin.php';
 
 use Exception;
 
