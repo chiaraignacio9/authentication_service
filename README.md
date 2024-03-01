@@ -7,7 +7,7 @@
 
 2. execute `composer install` to install dependecies  
 
-3. rename `.env.template` to `.env` and configure with your database configuration.
+3. rename `.env.template` to `.env`, configure with your database configuration and set the secret key.
 
 4. import `database.sql` file in your database 
 
