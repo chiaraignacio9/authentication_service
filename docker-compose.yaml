@@ -11,6 +11,17 @@ services:
       - ./:/var/www/html
       - ./config:/usr/local/etc/php
       - "./.htaccess:/var/www/html/.htaccess"
+    depends_on:
+      - db
+  db:
+    image: mysql:latest
+    environment:      
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "authentication_service"
+      MYSQL_PASSWORD: "Vasousado1."
+      MYSQL_USER: "chiaraignacio9"
+    ports:      
+      - "3306:3306"
 volumes:
   html: {}
   config: {}

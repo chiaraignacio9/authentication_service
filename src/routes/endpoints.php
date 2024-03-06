@@ -15,6 +15,4 @@ Route::post('/auth/logout', [LogoutController::class, 'index']);
 
 Route::post('auth/register', [RegisterController::class, 'index']);
 
-Route::get('/user/dashboard', [DashboardController::class, 'index']);
-
 Route::dispatch();

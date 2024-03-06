@@ -12,11 +12,13 @@ class Mysql
     private $database;
     private $username;
     private $host;
+    private $port;
     private $password;    
 
     public function __construct()
     {
         $this->host = $_ENV['MYSQL_HOST'];
+        $this->port = $_ENV['MYSQL_PORT'];
         $this->database = $_ENV['MYSQL_DATABASE'];
         $this->username = $_ENV['MYSQL_USERNAME'];
         $this->password = $_ENV['MYSQL_PASSWORD'];
@@ -25,7 +27,7 @@ class Mysql
     public function connect(): ?PDO
     {                
 
-        $dsn = "mysql:host={$this->host};dbname={$this->database}";                
+        $dsn = "mysql:host={$this->host};port={$this->port};dbname={$this->database}";        
 
         try {
             return ( new PDO($dsn, $this->username, $this->password ) );
